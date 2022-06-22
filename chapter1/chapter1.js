@@ -1,12 +1,13 @@
 /*
  * @Author       : Abel Chan
  * @Date         : 2022-06-21 13:09:20
- * @LastEditors  : Abel Chan
- * @LastEditTime : 2022-06-21 13:31:09
- * @FilePath     : \chapter1\chapter1.js
+ * @LastEditors: Abel Chan
+ * @LastEditTime: 2022-06-22 08:24:21
+ * @FilePath: \chapter1\chapter1.js
  * @Description  : 
  */
 "use strict";
+const WebGLUtils = require("../WebGLUtils");
 
 /** 创建 着色器 */
 function createShader(gl, type, source) {
@@ -64,6 +65,21 @@ function main() {
     ];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
+    WebGLUtils.resizeCanvasToDisplaySize(canvas);
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.useProgram(program);
+    gl.enableVertexAttribArray(positionAttributeLocation);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    let size = 2;
+    let type = gl.FLOAT;
+    let normalize = false;
+    let stride = 0;
+
+    let offset = 0;
+    gl.vertexAttribPointer(positionAttributeLocation, size, type, normalize, stride, offset);
 
 
 }

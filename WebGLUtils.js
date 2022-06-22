@@ -1,9 +1,9 @@
 /*
  * @Author       : Abel Chan
  * @Date         : 2022-06-21 14:08:34
- * @LastEditors  : Abel Chan
- * @LastEditTime : 2022-06-21 14:25:04
- * @FilePath     : \WebGLUtils.js
+ * @LastEditors: Abel Chan
+ * @LastEditTime: 2022-06-22 08:08:04
+ * @FilePath: \WebGLUtils.js
  * @Description  : 
  */
 
@@ -25,4 +25,19 @@
     }
 
 
+    function resizeCanvasToDisplaySize(canvas, multiplier) {
+        multiplier = multiplier || 1;
+        const width = canvas.clientWidth * multiplier | 0;
+        const height = canvas.clientHeight * multiplier | 0;
+        if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+            return true;
+        }
+        return false;
+    }
+
+    return {
+        resizeCanvasToDisplaySize: resizeCanvasToDisplaySize,
+    }
 }))
